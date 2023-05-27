@@ -1,0 +1,43 @@
+import { useState } from "react";
+
+const App = () => {
+  const [value, setValue] = useState(null);
+  const [result, setResult] = useState("");
+
+  const valueForCalculation = (event) => {
+    setValue(event.target.value);
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    setResult(eval(value));
+  };
+
+  console.log(result);
+  return (
+    <div className="max-w-md mx-auto bg-indigo-500 p-10 mt-10">
+      <h1 className="text-white text-2xl font-semibold">
+        This is for little Marry
+      </h1>
+      <form onSubmit={(event) => handleSubmit(event)}>
+        <input
+          type="text"
+          className="border w-full py-1 mt-2 outline-none"
+          placeholder="Enter the Paranthesized Expressions Here"
+          onChange={(event) => valueForCalculation(event)}
+        />
+      </form>
+
+      {!result ? (
+        <p className="text-white mt-3">The result will be displayed here!</p>
+      ) : (
+        <p className="  text-center bg-white mt-4">
+          <span className="text-3xl text-indigo-400">The result is: </span>
+          <span className="text-4xl text-indigo-600">{result}</span>
+        </p>
+      )}
+    </div>
+  );
+};
+
+export default App;
