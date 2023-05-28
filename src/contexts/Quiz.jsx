@@ -23,8 +23,12 @@ const reducer = (state, action) => {
         showResults,
       };
     }
+    case "RESTART": {
+      return initialState;
+    }
+    default:
+      return state;
   }
-  return state;
 };
 
 export const QuizContext = createContext();
