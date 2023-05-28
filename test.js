@@ -1,7 +1,11 @@
-var txt = "";
-var person = { 1: "Jhon", 2: "Doe", 3: 25 };
-var x;
+const shuffles = ["Are u crazy", "Are u alright"];
 
-for (x in person) {
-  console.log(Number(x));
-}
+const unshuffles = shuffles
+  .map((shuffle) => ({
+    sort: Math.random(),
+    value: shuffle,
+  }))
+  .sort((a, b) => a.sort - b.sort)
+  .map((obj) => obj.value);
+
+console.log(unshuffles);

@@ -5,6 +5,7 @@ import Question from "./Question";
 const Quiz = () => {
   const [quizState, dispatch] = useContext(QuizContext);
 
+  console.log("quizState", quizState);
   return (
     <div className="text-center">
       {quizState.showResults && (
@@ -15,8 +16,8 @@ const Quiz = () => {
               <p className="text-lg ">You have completed the quiz</p>
               <br />
               <p className="text-md">
-                You've got {quizState.currentQuestionIndex} out of &nbsp;
-                {quizState.questions.length}
+                You've got {quizState.correctAnswerCount} out of &nbsp;
+                {quizState.questions.length} right.
               </p>
             </div>
 
@@ -30,24 +31,25 @@ const Quiz = () => {
         </div>
       )}
       {!quizState.showResults && (
-        <>
-          <div className=" bg-indigo-400 pt-6 py-2 text-white ">
-            <span className="">Question</span>{" "}
-            <span className="text-2xl font-semibold">
+        <div className="h-screen bg-indigo-50">
+          <div className=" bg-indigo-400 pt-10 py-5 text-white ">
+            <h1 className="text-[40px]">Level 1</h1>
+            <span className="text-lg">Question</span>{" "}
+            <span className="text-xl font-semibold">
               {quizState.currentQuestionIndex + 1}/{quizState.questions.length}
             </span>
           </div>
 
-          <div className="mt-6 bg-indigo-50 pt-5">
+          <div className="mt-6 py-5 mx-5">
             <Question />
             <button
-              className="mt-3 bg-indigo-500 py-1 px-3 text-sm shadow-md rounded text-white"
+              className="mt-3 bg-indigo-500 text-xl font-semibold  py-3 w-full text-white"
               onClick={() => dispatch({ type: "NEXT_QUESTION" })}
             >
               Next question
             </button>
           </div>
-        </>
+        </div>
       )}
     </div>
   );
